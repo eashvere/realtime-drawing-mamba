@@ -4,6 +4,9 @@
 
 ### Dependencies
 Install NumPy, PyTorch, and [Mamba state-spaces](https://github.com/state-spaces/mamba)
+```bash
+pip install -r requirements.txt
+```
 
 ### Dataset
 
