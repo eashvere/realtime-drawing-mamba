@@ -30,7 +30,7 @@ def end_line(event=None):
 
 root = tk.Tk()
 
-canvas = tk.Canvas(background='black', width=500, height=500)
+canvas = tk.Canvas(background='white', width=500, height=500)
 canvas.pack()
 
 canvas.bind('<Button-1>', set_start)
