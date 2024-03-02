@@ -14,7 +14,7 @@ def to_big_strokes(stroke, max_len=100):
   """Converts from stroke-3 to stroke-5 format and pads to given length."""
   # (But does not insert special start token).
 
-  result = np.zeros((max_len, 5), dtype=float)
+  result = np.zeros((max_len, 5), dtype=np.float32)
   l = len(stroke)
   assert l <= max_len
   result[0:l, 0:2] = stroke[:, 0:2]
