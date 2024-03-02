@@ -17,7 +17,7 @@ def to_big_strokes(stroke, max_len=100):
   result = np.zeros((max_len, 5), dtype=np.float32)
   l = len(stroke)
   assert l <= max_len
-  result[0:l, 0:2] = stroke[:, 0:2]
+  result[0:l, 0:2] = stroke[:, 0:2] / 255
   result[0:l, 3] = stroke[:, 2]
   result[0:l, 2] = 1 - result[0:l, 3]
   result[l:, 4] = 1
@@ -43,7 +43,12 @@ class DrawingDataset(Dataset):
         prev_end = 0
         self.labels = P.IntervalDict()
         self.sketchs = []
+        num_files = 10
+        i = 0
         for path in tqdm(self.file_paths):
+            i += 1
+            if i == 10:
+                break
             data = np.load(path, encoding='latin1', allow_pickle=True)[self.split]
             label = os.path.basename(path).split('.')[0]
             for sketch in data:
