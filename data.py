@@ -59,7 +59,16 @@ class DrawingDataset(Dataset):
         return len(self.sketchs)
 
     def __getitem__(self, idx):
-        data = to_big_strokes(self.sketchs[idx], max_len=self.max_length)
-        label = self.labels[idx]
-        return torch.from_numpy(data), label
+        data = torch.from_numpy(to_big_strokes(self.sketchs[idx], max_len=self.max_length))
+        # label = self.labels[idx]
+        input_seq = data[:-1]
+        target_seq = data[1:]
+        return input_seq, target_seq
         
+def collate_batch(batch):
+    inputs, targets = zip(*batch)
+    inputs_pad = torch.nn.utils.rnn.pad_sequence(inputs, batch_first=True, padding_value=0)
+    targets_pad = torch.nn.utils.rnn.pad_sequence(targets, batch_first=True, padding_value=0)
+    return inputs_pad, targets_pad
+
+__all__ = ['DrawingDataset', 'collate_batch', 'split_sizes']
