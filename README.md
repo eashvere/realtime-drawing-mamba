@@ -3,6 +3,8 @@
 ## Setup
 
 ### Dependencies
+Make sure you have CUDA installed (>=11.6)
+
 Install NumPy, PyTorch, and [Mamba state-spaces](https://github.com/state-spaces/mamba)
 ```bash
 pip install -r requirements.txt

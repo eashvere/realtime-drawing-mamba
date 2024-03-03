@@ -14,7 +14,7 @@ def to_big_strokes(stroke, max_len=100):
   """Converts from stroke-3 to stroke-5 format and pads to given length."""
   # (But does not insert special start token).
 
-  result = np.zeros((max_len, 5), dtype=float)
+  result = np.zeros((max_len, 5), dtype=np.float32)
   l = len(stroke)
   assert l <= max_len
   result[0:l, 0:2] = stroke[:, 0:2]
@@ -43,7 +43,12 @@ class DrawingDataset(Dataset):
         prev_end = 0
         self.labels = P.IntervalDict()
         self.sketchs = []
+        num_files = 10 #len(self.file_paths)
+        i = 0
         for path in tqdm(self.file_paths):
+            if i == num_files:
+                break
+            i += 1
             data = np.load(path, encoding='latin1', allow_pickle=True)[self.split]
             label = os.path.basename(path).split('.')[0]
             for sketch in data:
@@ -59,7 +64,16 @@ class DrawingDataset(Dataset):
         return len(self.sketchs)
 
     def __getitem__(self, idx):
-        data = to_big_strokes(self.sketchs[idx], max_len=self.max_length)
-        label = self.labels[idx]
-        return torch.from_numpy(data), label
+        data = torch.from_numpy(to_big_strokes(self.sketchs[idx], max_len=self.max_length))
+        # label = self.labels[idx]
+        input_seq = data[:-1]
+        target_seq = data[1:]
+        return input_seq, target_seq
         
+def collate_batch(batch):
+    inputs, targets = zip(*batch)
+    inputs_pad = torch.nn.utils.rnn.pad_sequence(inputs, batch_first=True, padding_value=0)
+    targets_pad = torch.nn.utils.rnn.pad_sequence(targets, batch_first=True, padding_value=0)
+    return inputs_pad, targets_pad
+
+__all__ = ['DrawingDataset', 'collate_batch', 'split_sizes']
