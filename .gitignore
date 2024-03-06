@@ -161,4 +161,7 @@ cython_debug/
 
 # Data Folder
 *.npz
-*.full.npz
+*.full.npzs
+
+# Logs
+logs

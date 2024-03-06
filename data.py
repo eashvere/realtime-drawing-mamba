@@ -43,7 +43,7 @@ class DrawingDataset(Dataset):
         prev_end = 0
         self.labels = P.IntervalDict()
         self.sketchs = []
-        num_files = 10 #len(self.file_paths)
+        num_files = 25#len(self.file_paths)
         i = 0
         for path in tqdm(self.file_paths):
             if i == num_files:
@@ -70,10 +70,12 @@ class DrawingDataset(Dataset):
         target_seq = data[1:]
         return input_seq, target_seq
         
-def collate_batch(batch):
-    inputs, targets = zip(*batch)
-    inputs_pad = torch.nn.utils.rnn.pad_sequence(inputs, batch_first=True, padding_value=0)
-    targets_pad = torch.nn.utils.rnn.pad_sequence(targets, batch_first=True, padding_value=0)
-    return inputs_pad, targets_pad
+# def collate_batch(batch):
+#     inputs, targets = zip(*batch)
+#     inputs_pad = torch.nn.utils.rnn.pad_sequence(inputs, batch_first=True, padding_value=0)
+#     targets_pad = torch.nn.utils.rnn.pad_sequence(targets, batch_first=True, padding_value=0)
+#     print(inputs_pad)
+#     print(np.ndim(inputs_pad))
+#     return inputs_pad, targets_pad
 
 __all__ = ['DrawingDataset', 'collate_batch', 'split_sizes']
