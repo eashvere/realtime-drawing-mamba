@@ -24,6 +24,7 @@ class DrawingDataset(Dataset):
             raise ValueError(f"Incorrect split given. Supported {split_sizes.keys()}. Do you have a typo?")
         self.max_length = max_length
         self.file_paths = sorted(glob.glob(os.path.join(self.data_path, '*.npz')))
+        print(self.file_paths)
         
         prev_end = 0
         self.labels = P.IntervalDict()
@@ -31,6 +32,7 @@ class DrawingDataset(Dataset):
         num_files = 1#len(self.file_paths)
         i = 0
         for path in tqdm(self.file_paths):
+            path='data/cat.npz'
             if i == num_files:
                 break
             i += 1
@@ -49,11 +51,25 @@ class DrawingDataset(Dataset):
         return len(self.sketchs)
 
     def __getitem__(self, idx):
-        data = torch.from_numpy(to_big_strokes(self.sketchs[idx], max_len=self.max_length))
+        scaled_sketch = self.scale_drawing(self.sketchs[idx], 255)
+        # scaled_sketch = self.sketchs[idx]
+        data = torch.from_numpy(to_big_strokes(scaled_sketch, max_len=self.max_length))
         # label = self.labels[idx]
         input_seq = data[:-1]
         target_seq = data[1:]
         return input_seq, target_seq
+    
+    def get_drawing_size(self, drawing):
+        minx, miny = min(drawing[0, :]), min(drawing[1, :])
+        maxx, maxy = max(drawing[0, :]), max(drawing[1, :])
+        return int(maxx - minx), int(maxy - miny)
+
+    def scale_drawing(self, drawing, scale):
+        x,y = self.get_drawing_size(drawing)
+        scalexy = scale / max(x, y, 1)
+        drawing[0, :] = drawing[0, :] / scalexy
+        drawing[1, :] = drawing[1, :] / scalexy
+        return drawing
         
 # def collate_batch(batch):
 #     inputs, targets = zip(*batch)
