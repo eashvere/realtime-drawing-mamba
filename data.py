@@ -6,22 +6,7 @@ from tqdm import tqdm
 
 import torch
 from torch.utils.data import Dataset
-
-
-# Function from utils.py for sketch-rnn in the Magenta github repository
-# at https://github.com/magenta/magenta/tree/main/magenta/models/sketch_rnn
-def to_big_strokes(stroke, max_len=100):
-  """Converts from stroke-3 to stroke-5 format and pads to given length."""
-  # (But does not insert special start token).
-
-  result = np.zeros((max_len, 5), dtype=np.float32)
-  l = len(stroke)
-  assert l <= max_len
-  result[0:l, 0:2] = stroke[:, 0:2]
-  result[0:l, 3] = stroke[:, 2]
-  result[0:l, 2] = 1 - result[0:l, 3]
-  result[l:, 4] = 1
-  return result
+from utils import *
 
 split_sizes = {
     'train': 70000,
@@ -43,7 +28,7 @@ class DrawingDataset(Dataset):
         prev_end = 0
         self.labels = P.IntervalDict()
         self.sketchs = []
-        num_files = 25#len(self.file_paths)
+        num_files = 1#len(self.file_paths)
         i = 0
         for path in tqdm(self.file_paths):
             if i == num_files:
