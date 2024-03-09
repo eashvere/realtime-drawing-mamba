@@ -24,15 +24,14 @@ class DrawingDataset(Dataset):
             raise ValueError(f"Incorrect split given. Supported {split_sizes.keys()}. Do you have a typo?")
         self.max_length = max_length
         self.file_paths = sorted(glob.glob(os.path.join(self.data_path, '*.npz')))
-        print(self.file_paths)
         
         prev_end = 0
         self.labels = P.IntervalDict()
         self.sketchs = []
-        num_files = 1#len(self.file_paths)
+        num_files = 50#len(self.file_paths)
         i = 0
         for path in tqdm(self.file_paths):
-            path='data/cat.npz'
+            #path='data/cat.npz'
             if i == num_files:
                 break
             i += 1
