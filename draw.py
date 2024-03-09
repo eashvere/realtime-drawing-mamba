@@ -10,8 +10,6 @@ import torch
 # test_drawing = [[  16,   -5,    1,    0,    0], [  19,  -12,    1,    0,    0], [  80,  -56,    1,    0,    0], [  22,  -33,    1,    0,    0], [  11,  -29,    1,    0,    0], [  17,  -66,    1,    0,    0], [   5,  -38,    1,    0,    0], [   2, -394,    1,    0,    0], [   8,  -37,    1,    0,    0], [  13,  -26,    1,    0,    0], [  11,  -32,    1,    0,    0], [  57,  -99,    1,    0,    0], [   2,   10,    1,    0,    0], [  -4,   33,    1,    0,    0], [  -9,   40,    1,    0,    0], [ -10,   84,    1,    0,    0], [   0,  125,    1,    0,    0], [  12,   53,    1,    0,    0], [  24,   80,    1,    0,    0], [  50,  114,    1,    0,    0], [  27,   75,    1,    0,    0], [  12,   25,    1,    0,    0], [  69,   51,    1,    0,    0], [  27,   35,    1,    0,    0], [  30,   58,    1,    0,    0], [  17,   22,    1,    0,    0], [  14,   15,    1,    0,    0], [  31,   20,    0,    1,    0], [   0,    0,    0,    0,    1], [   0,    0,    0,    0,    1], [   0,    0,    0,    0,    1], [   0,    0,    0,    0,    1], [   0,    0,    0,    0,    1], [   0,    0,    0,    0,    1], [   0,    0,    0,    0,    1], [   0,    0,    0,    0,    1], [   0,    0,    0,    0,    1], [   0,    0,    0,    0,    1], [   0,    0,    0,    0,    1], [   0,    0,    0,    0,    1], [   0,    0,    0,    0,    1], [   0,    0,    0,    0,    1], [   0,    0,    0,    0,    1], [   0,    0,    0,    0,    1], [   0,    0,    0,    0,    1], [   0,    0,    0,    0,    1], [   0,    0,    0,    0,    1], [   0,    0,    0,    0,    1], [   0,    0,    0,    0,    1], [   0,    0,    0,    0,    1], [   0,    0,    0,    0,    1], [   0,    0,    0,    0,    1], [   0,    0,    0,    0,    1], [   0,    0,    0,    0,    1], [   0,    0,    0,    0,    1], [   0,    0,    0,    0,    1], [   0,    0,    0,    0,    1], [   0,    0,    0,    0,    1], [   0,    0,    0,    0,    1], [   0,    0,    0,    0,    1], [   0,    0,    0,    0,    1], [   0,    0,    0,    0,    1], [   0,    0,    0,    0,    1], [   0,    0,    0,    0,    1], [   0,    0,    0,    0,    1], [   0,    0,    0,    0,    1], [   0,    0,    0,    0,    1], [   0,    0,    0,    0,    1], [   0,    0,    0,    0,    1], [   0,    0,    0,    0,    1], [   0,    0,    0,    0,    1], [   0,    0,    0,    0,    1], [   0,    0,    0,    0,    1], [   0,    0,    0,    0,    1], [   0,    0,    0,    0,    1], [   0,    0,    0,    0,    1], [   0,    0,    0,    0,    1], [   0,    0,    0,    0,    1], [   0,    0,    0,    0,    1], [   0,    0,    0,    0,    1], [   0,    0,    0,    0,    1], [   0,    0,    0,    0,    1], [   0,    0,    0,    0,    1], [   0,    0,    0,    0,    1], [   0,    0,    0,    0,    1], [   0,    0,    0,    0,    1], [   0,    0,    0,    0,    1], [   0,    0,    0,    0,    1], [   0,    0,    0,    0,    1], [   0,    0,    0,    0,    1], [   0,    0,    0,    0,    1], [   0,    0,    0,    0,    1], [   0,    0,    0,    0,    1], [   0,    0,    0,    0,    1], [   0,    0,    0,    0,    1], [   0,    0,    0,    0,    1], [   0,    0,    0,    0,    1], [   0,    0,    0,    0,    1], [   0,    0,    0,    0,    1]]), tensor([[  19,  -12,    1,    0,    0], [  80,  -56,    1,    0,    0], [  22,  -33,    1,    0,    0], [  11,  -29,    1,    0,    0], [  17,  -66,    1,    0,    0], [   5,  -38,    1,    0,    0], [   2, -394,    1,    0,    0], [   8,  -37,    1,    0,    0], [  13,  -26,    1,    0,    0], [  11,  -32,    1,    0,    0], [  57,  -99,    1,    0,    0], [   2,   10,    1,    0,    0], [  -4,   33,    1,    0,    0], [  -9,   40,    1,    0,    0], [ -10,   84,    1,    0,    0], [   0,  125,    1,    0,    0], [  12,   53,    1,    0,    0], [  24,   80,    1,    0,    0], [  50,  114,    1,    0,    0], [  27,   75,    1,    0,    0], [  12,   25,    1,    0,    0], [  69,   51,    1,    0,    0], [  27,   35,    1,    0,    0], [  30,   58,    1,    0,    0], [  17,   22,    1,    0,    0], [  14,   15,    1,    0,    0], [  31,   20,    0,    1,    0], [   0,    0,    0,    0,    1], [   0,    0,    0,    0,    1], [   0,    0,    0,    0,    1], [   0,    0,    0,    0,    1], [   0,    0,    0,    0,    1], [   0,    0,    0,    0,    1], [   0,    0,    0,    0,    1], [   0,    0,    0,    0,    1], [   0,    0,    0,    0,    1], [   0,    0,    0,    0,    1], [   0,    0,    0,    0,    1], [   0,    0,    0,    0,    1], [   0,    0,    0,    0,    1], [   0,    0,    0,    0,    1], [   0,    0,    0,    0,    1], [   0,    0,    0,    0,    1], [   0,    0,    0,    0,    1], [   0,    0,    0,    0,    1], [   0,    0,    0,    0,    1], [   0,    0,    0,    0,    1], [   0,    0,    0,    0,    1], [   0,    0,    0,    0,    1], [   0,    0,    0,    0,    1], [   0,    0,    0,    0,    1], [   0,    0,    0,    0,    1], [   0,    0,    0,    0,    1], [   0,    0,    0,    0,    1], [   0,    0,    0,    0,    1], [   0,    0,    0,    0,    1], [   0,    0,    0,    0,    1], [   0,    0,    0,    0,    1], [   0,    0,    0,    0,    1], [   0,    0,    0,    0,    1], [   0,    0,    0,    0,    1], [   0,    0,    0,    0,    1], [   0,    0,    0,    0,    1], [   0,    0,    0,    0,    1], [   0,    0,    0,    0,    1], [   0,    0,    0,    0,    1], [   0,    0,    0,    0,    1], [   0,    0,    0,    0,    1], [   0,    0,    0,    0,    1], [   0,    0,    0,    0,    1], [   0,    0,    0,    0,    1], [   0,    0,    0,    0,    1], [   0,    0,    0,    0,    1], [   0,    0,    0,    0,    1], [   0,    0,    0,    0,    1], [   0,    0,    0,    0,    1], [   0,    0,    0,    0,    1], [   0,    0,    0,    0,    1], [   0,    0,    0,    0,    1], [   0,    0,    0,    0,    1], [   0,    0,    0,    0,    1], [   0,    0,    0,    0,    1], [   0,    0,    0,    0,    1], [   0,    0,    0,    0,    1], [   0,    0,    0,    0,    1], [   0,    0,    0,    0,    1], [   0,    0,    0,    0,    1], [   0,    0,    0,    0,    1], [   0,    0,    0,    0,    1], [   0,    0,    0,    0,    1], [   0,    0,    0,    0,    1], [   0,    0,    0,    0,    1], [   0,    0,    0,    0,    1], [   0,    0,    0,    0,    1], [   0,    0,    0,    0,    1], [   0,    0,    0,    0,    1], [   0,    0,    0,    0,    1], [   0,    0,    0,    0,    1], [   0,    0,    0,    0,    1]]
 
 
-
-
 class Canvas:
     def __init__(self, canvas, isPredictions=False, completionCanvas=None):
         self.canvas = canvas
@@ -21,9 +19,12 @@ class Canvas:
             self.canvas.bind('<B1-Motion>', self.draw_line)
             self.canvas.bind('<ButtonRelease-1>', self.end_line)
             self.completionCanvas = completionCanvas
+            self.canvas.bind('<KeyPress>', self.reset)
         else:
             # self.canvas.bind('<Button-1>', self.generate_drawing)
-            self.canvas.bind('<Button-1>', self.reset)
+            #self.canvas.bind('<KeyPress>', test)
+            self.canvas.bind('<Button-1>', self.focus)
+            self.canvas.bind('<KeyPress>', self.reset)
             # self.drawingCanvas = drawingCanvas
             # self.canvas.bind('<Button-2>', self.gener)
 
@@ -33,9 +34,12 @@ class Canvas:
         self.curr_line = []
         self.line_options = {}
         self.stroke5 = []
-        self.prevx = 0
+        self.prevx = 0  
         self.prevy = 0
 
+    def focus(self, event):
+        self.canvas.focus_set()
+    
     def generate_drawing(self, drawing):
         start = torch.tensor(drawing, dtype=torch.float).unsqueeze(0).to('cuda')
         generated = loaded_model.generate(start)
@@ -45,6 +49,13 @@ class Canvas:
         # self.full_drawing(drawing)
 
     def reset(self, event):
+        self.lines = []
+        self.simplified_lines = []
+        self.line_id = None
+        self.curr_line = []
+        self.stroke5 = []
+        self.prevx = 0  
+        self.prevy = 0
         self.canvas.delete('all')
 
     def get_drawing_size(self, drawing):
@@ -79,9 +90,17 @@ class Canvas:
         if self.line_id is not None:
             self.canvas.delete(self.line_id)
         self.line_id = self.canvas.create_line(self.curr_line, **self.line_options)
+        
+        temp = self.simplified_lines
+        temp.append(self.simplifyLine(self.curr_line))
+        
+        temp_stroke5 = self.stroke5
+        temp_stroke5 += self.convert5stroke(self.simplified_lines[-1])
+        self.completionCanvas.generate_drawing(temp_stroke5)
 
 
     def set_start(self, event):
+        self.focus("")
         self.curr_line.append((event.x, event.y))
 
 
@@ -99,7 +118,7 @@ class Canvas:
 
         self.curr_line.clear()
         self.line_id = None
-        self.completionCanvas.generate_drawing(self.stroke5)
+        #self.completionCanvas.generate_drawing(self.stroke5)
         # print(curr_line)
 
     def simplifyLine(self, line):
@@ -140,7 +159,7 @@ class Canvas:
 
 root = tk.Tk()
 
-loaded_model = customModel(nb=3, no=20, ns=2, embed_dim=32).to("cuda")
+loaded_model = customModel(nb=4, no=2, ns=2, embed_dim=256).to("cuda")
 loaded_model.load('./saved/model1.pth')
 
 completionCanvas = Canvas(tk.Canvas(background='white', width=1024, height=1024), True)
