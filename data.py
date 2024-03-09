@@ -51,8 +51,8 @@ class DrawingDataset(Dataset):
         return len(self.sketchs)
 
     def __getitem__(self, idx):
-        scaled_sketch = self.scale_drawing(self.sketchs[idx], 255)
-        # scaled_sketch = self.sketchs[idx]
+        #scaled_sketch = self.scale_drawing(self.sketchs[idx], 255)
+        scaled_sketch = self.sketchs[idx]
         data = torch.from_numpy(to_big_strokes(scaled_sketch, max_len=self.max_length))
         # label = self.labels[idx]
         input_seq = data[:-1]
