@@ -36,9 +36,13 @@ class Canvas:
         self.stroke5 = []
         self.prevx = 0  
         self.prevy = 0
+        self.busy = False
 
     def focus(self, event):
         self.canvas.focus_set()
+    
+    def reset_busy(self):
+        self.busy = False
     
     def generate_drawing(self, drawing):
         start = torch.tensor(drawing, dtype=torch.float).unsqueeze(0).to('cuda')
@@ -86,17 +90,21 @@ class Canvas:
 
 
     def draw_line(self,event):
-        self.curr_line.append((event.x, event.y))
-        if self.line_id is not None:
-            self.canvas.delete(self.line_id)
-        self.line_id = self.canvas.create_line(self.curr_line, **self.line_options)
+        if not self.busy:
+            self.busy = True
         
-        temp = self.simplified_lines
-        temp.append(self.simplifyLine(self.curr_line))
-        
-        temp_stroke5 = self.stroke5
-        temp_stroke5 += self.convert5stroke(self.simplified_lines[-1])
-        self.completionCanvas.generate_drawing(temp_stroke5)
+            self.curr_line.append((event.x, event.y))
+            if self.line_id is not None:
+                self.canvas.delete(self.line_id)
+            self.line_id = self.canvas.create_line(self.curr_line, **self.line_options)
+            
+            temp = self.simplified_lines
+            temp.append(self.simplifyLine(self.curr_line))
+            
+            temp_stroke5 = self.stroke5
+            temp_stroke5 += self.convert5stroke(self.simplified_lines[-1])
+            self.completionCanvas.generate_drawing(temp_stroke5)
+            self.canvas.after(100, self.reset_busy)
 
 
     def set_start(self, event):
@@ -124,7 +132,7 @@ class Canvas:
     def simplifyLine(self, line):
         # print(line)
         # npline = np.array(line)
-        mask = rdppy.filter(line, 2)
+        mask = rdppy.filter(line, 4)
         output = []
         for i in range(len(mask)):
             if mask[i]:
