@@ -168,7 +168,7 @@ class Canvas:
 root = tk.Tk()
 
 loaded_model = customModel(nb=4, no=2, ns=2, embed_dim=256).to("cuda")
-loaded_model.load('./saved/model1.pth')
+loaded_model.load('./saved/base.pth')
 
 completionCanvas = Canvas(tk.Canvas(background='white', width=1024, height=1024), True)
 drawingCanvas = Canvas(tk.Canvas(background='white', width=256, height=256), False, completionCanvas)
