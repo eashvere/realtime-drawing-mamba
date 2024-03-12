@@ -149,7 +149,7 @@ class Canvas:
 
         self.curr_line.clear()
         self.line_id = None
-        self.completionCanvas.generate_drawing(self.stroke5, 0,0)
+        # self.completionCanvas.generate_drawing(self.stroke5, 0,0)
         # print(curr_line)
 
     def simplifyLine(self, line):
