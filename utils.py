@@ -1,9 +1,11 @@
+# Functions from utils.py for sketch-rnn in the Magenta github repository
+# at https://github.com/magenta/magenta/tree/main/magenta/models/sketch_rnn
+
 import numpy as np
 import svgwrite
 from IPython.display import SVG, display
 
-# Function from utils.py for sketch-rnn in the Magenta github repository
-# at https://github.com/magenta/magenta/tree/main/magenta/models/sketch_rnn
+
 def to_big_strokes(stroke, max_len=100):
   """Converts from stroke-3 to stroke-5 format and pads to given length."""
   # (But does not insert special start token).

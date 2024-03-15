@@ -1,3 +1,5 @@
+# Architecture inspired by George et. al.: https://github.com/95ktsmith/Sketch-Transformer
+
 from functools import partial
 from torch import nn
 from mamba_ssm.models.mixer_seq_simple import create_block, _init_weights
@@ -72,7 +74,8 @@ class customModel(nn.Module):
     
     def load(self, path):
         self.load_state_dict(torch.load(path))
-        
+
+# By isle_of_gods in https://stackoverflow.com/questions/71998978/early-stopping-in-pytorch
 class EarlyStopper:
     def __init__(self, patience=1, min_delta=0):
         self.patience = patience

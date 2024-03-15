@@ -1,4 +1,4 @@
-# From Matiiss: https://stackoverflow.com/questions/70403360/drawing-with-mouse-on-tkinter-canvas
+# Drawing Canvas from Matiiss: https://stackoverflow.com/questions/70403360/drawing-with-mouse-on-tkinter-canvas
 
 import tkinter as tk
 import rdppy
