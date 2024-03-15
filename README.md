@@ -1,4 +1,4 @@
-# Draw SSM
+# RealTime Drawing with Mamba
 
 ## Poster
 ![Poster](./figs/CSE_493G1_Poster.png)
